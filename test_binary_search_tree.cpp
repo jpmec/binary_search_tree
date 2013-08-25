@@ -21,7 +21,14 @@ void test_default_constructor(void)
 
 void test_copy_constructor(void)
 {
-  assert(0);
+  { // test empty tree
+    BinarySearchTree<int> int_tree1;
+
+    BinarySearchTree<int> int_tree2(int_tree1);
+
+    assert(int_tree2.empty());
+    assert(0 == int_tree1.compare(int_tree2));
+  }
 }
 
 
@@ -29,7 +36,8 @@ void test_copy_constructor(void)
 
 void test_destructor(void)
 {
-  assert(0);
+  /// Instantiate and let it be destructed when out of scope.
+  BinarySearchTree<int> int_tree;
 }
 
 
@@ -37,7 +45,15 @@ void test_destructor(void)
 
 void test_assignment(void)
 {
-  assert(0);
+  { // test empty tree
+    BinarySearchTree<int> int_tree1;
+    BinarySearchTree<int> int_tree2;
+
+    int_tree2 = int_tree1;
+
+    assert(int_tree2.empty());
+    assert(0 == int_tree1.compare(int_tree2));
+  }
 }
 
 
@@ -45,9 +61,11 @@ void test_assignment(void)
 
 void test_empty(void)
 {
-  BinarySearchTree<int> int_tree;
+  { // test empty tree
+    BinarySearchTree<int> int_tree;
 
-  assert(int_tree.empty());
+    assert(int_tree.empty());
+  }
 }
 
 
@@ -55,7 +73,13 @@ void test_empty(void)
 
 void test_clear(void)
 {
-  assert(0);
+  { // test empty tree
+    BinarySearchTree<int> int_tree;
+
+    int_tree.clear();
+
+    assert(int_tree.empty());
+  }
 }
 
 
@@ -63,7 +87,12 @@ void test_clear(void)
 
 void test_compare(void)
 {
-  assert(0);
+  { // test empty tree
+    BinarySearchTree<int> int_tree1;
+    BinarySearchTree<int> int_tree2;
+
+    assert(0 == int_tree1.compare(int_tree2));
+  }
 }
 
 
@@ -87,7 +116,11 @@ void test_erase(void)
 
 void test_size(void)
 {
-  assert(0);
+  { // test empty tree
+    BinarySearchTree<int> int_tree;
+
+    assert(0 == int_tree.size());
+  }
 }
 
 
@@ -95,7 +128,11 @@ void test_size(void)
 
 void test_count(void)
 {
-  assert(0);
+  { // test empty tree
+    BinarySearchTree<int> int_tree;
+
+    assert(0 == int_tree.count(0));
+  }
 }
 
 

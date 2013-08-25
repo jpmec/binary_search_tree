@@ -28,6 +28,7 @@ class BinarySearchTree
   BinarySearchTree(const BinarySearchTree& other)
     : root(NULL)
   {
+    *this = other;
   }
 
 
