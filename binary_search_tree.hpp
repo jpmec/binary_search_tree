@@ -263,9 +263,23 @@ class BinarySearchTree
           this->left = new Node(value);
           return this;
         }
+
+        // This case helps to keep a balanced tree.
+        else if (   (NULL == this->right)
+                 && (NULL == this->left->left)
+                 && (NULL == this->left->right)
+                 && (value < this->left->value) )
+        {
+          Node* new_root = this->left;
+          this->left = NULL;
+          new_root->right = this;
+          new_root->left = new Node(value);
+          return new_root;
+        }
+
         else
         {
-          // TODO IMPLEMENT THIS CASE
+          this->left = this->left->insert(value);
           return this;
         }
       }
@@ -277,9 +291,23 @@ class BinarySearchTree
           this->right = new Node(value);
           return this;
         }
+
+        // This case helps to keep a balanced tree.
+        else if (   (NULL == this->left)
+                 && (NULL == this->right->left)
+                 && (NULL == this->right->right)
+                 && (value > this->right->value) )
+        {
+          Node* new_root = this->right;
+          this->right = NULL;
+          new_root->left = this;
+          new_root->right = new Node(value);
+          return new_root;
+        }
+
         else
         {
-          // TODO IMPLEMENT THIS CASE
+          this->right = this->right->insert(value);
           return this;
         }
       }
@@ -324,8 +352,8 @@ class BinarySearchTree
 
         else if ((NULL != this->left) && (NULL != this->right))
         {
-          // TODO IMPLEMENT THIS CASE
-          return this;
+          // TODO ADD AUTO-BALANCING HERE
+          return this->left->insert_unique_node(*(this->right));
         }
 
         else // child nodes both NULL
@@ -385,6 +413,43 @@ class BinarySearchTree
     Node()
       : left(NULL), right(NULL), value(0)
     {
+    }
+
+
+    /// Insert unique node into the tree contained by this node.
+    /// Node must be unique, otherwise bad things will happen.
+    /// Returns root of resulting tree.
+    Node* insert_unique_node(Node& other)
+    {
+      if (other.value < this->value)
+      {
+        if (NULL == this->left)
+        {
+          this->left = &other;
+          return this;
+        }
+
+        else
+        {
+          this->left = this->left->insert_unique_node(other);
+          return this;
+        }
+      }
+
+      else // (other->value > this->value)
+      {
+        if (NULL == this->right)
+        {
+          this->right = &other;
+          return this;
+        }
+
+        else
+        {
+          this->right = this->right->insert_unique_node(other);
+          return this;
+        }
+      }
     }
 
   };

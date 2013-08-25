@@ -166,6 +166,116 @@ void test_assignment(void)
     assert(1 == int_tree2.count(0));
     assert(0 == int_tree1.compare(int_tree2));
   }
+
+
+
+  { // test three element tree with unique elements
+    BinarySearchTree<int> int_tree1;
+    int_tree1.insert(0);
+    int_tree1.insert(1);
+    int_tree1.insert(2);
+
+    BinarySearchTree<int> int_tree2;
+
+    int_tree2 = int_tree1;
+
+    assert(!int_tree2.empty());
+    assert(3 == int_tree2.size());
+    assert(1 == int_tree2.count(0));
+    assert(1 == int_tree2.count(1));
+    assert(1 == int_tree2.count(2));
+    assert(0 == int_tree1.compare(int_tree2));
+  }
+
+  { // test three element tree with unique elements
+    BinarySearchTree<int> int_tree1;
+    int_tree1.insert(0);
+    int_tree1.insert(2);
+    int_tree1.insert(1);
+
+    BinarySearchTree<int> int_tree2;
+
+    int_tree2 = int_tree1;
+
+    assert(!int_tree2.empty());
+    assert(3 == int_tree2.size());
+    assert(1 == int_tree2.count(0));
+    assert(1 == int_tree2.count(1));
+    assert(1 == int_tree2.count(2));
+    assert(0 == int_tree1.compare(int_tree2));
+  }
+
+  { // test three element tree with unique elements
+    BinarySearchTree<int> int_tree1;
+    int_tree1.insert(1);
+    int_tree1.insert(0);
+    int_tree1.insert(2);
+
+    BinarySearchTree<int> int_tree2;
+
+    int_tree2 = int_tree1;
+
+    assert(!int_tree2.empty());
+    assert(3 == int_tree2.size());
+    assert(1 == int_tree2.count(0));
+    assert(1 == int_tree2.count(1));
+    assert(1 == int_tree2.count(2));
+    assert(0 == int_tree1.compare(int_tree2));
+  }
+
+  { // test three element tree with unique elements
+    BinarySearchTree<int> int_tree1;
+    int_tree1.insert(1);
+    int_tree1.insert(2);
+    int_tree1.insert(0);
+
+    BinarySearchTree<int> int_tree2;
+
+    int_tree2 = int_tree1;
+
+    assert(!int_tree2.empty());
+    assert(3 == int_tree2.size());
+    assert(1 == int_tree2.count(0));
+    assert(1 == int_tree2.count(1));
+    assert(1 == int_tree2.count(2));
+    assert(0 == int_tree1.compare(int_tree2));
+  }
+
+  { // test three element tree with unique elements
+    BinarySearchTree<int> int_tree1;
+    int_tree1.insert(2);
+    int_tree1.insert(0);
+    int_tree1.insert(1);
+
+    BinarySearchTree<int> int_tree2;
+
+    int_tree2 = int_tree1;
+
+    assert(!int_tree2.empty());
+    assert(3 == int_tree2.size());
+    assert(1 == int_tree2.count(0));
+    assert(1 == int_tree2.count(1));
+    assert(1 == int_tree2.count(2));
+    assert(0 == int_tree1.compare(int_tree2));
+  }
+
+  { // test three element tree with unique elements
+    BinarySearchTree<int> int_tree1;
+    int_tree1.insert(2);
+    int_tree1.insert(1);
+    int_tree1.insert(0);
+
+    BinarySearchTree<int> int_tree2;
+
+    int_tree2 = int_tree1;
+
+    assert(!int_tree2.empty());
+    assert(3 == int_tree2.size());
+    assert(1 == int_tree2.count(0));
+    assert(1 == int_tree2.count(1));
+    assert(1 == int_tree2.count(2));
+    assert(0 == int_tree1.compare(int_tree2));
+  }
 }
 
 
@@ -223,6 +333,17 @@ void test_clear(void)
     BinarySearchTree<int> int_tree;
     int_tree.insert(1);
     int_tree.insert(0);
+
+    int_tree.clear();
+
+    assert(int_tree.empty());
+  }
+
+  { // test three element tree
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(2);
 
     int_tree.clear();
 
@@ -322,6 +443,474 @@ void test_insert(void)
     assert(1 == int_tree.size());
     assert(1 == int_tree.count(0));
   }
+
+  { // test insert three elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(2);
+
+    assert(!int_tree.empty());
+    assert(3 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test insert three elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(1);
+
+    assert(!int_tree.empty());
+    assert(3 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test insert three elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(1);
+    int_tree.insert(0);
+    int_tree.insert(2);
+
+    assert(!int_tree.empty());
+    assert(3 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test insert three elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(0);
+
+    assert(!int_tree.empty());
+    assert(3 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test insert three elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(2);
+    int_tree.insert(0);
+    int_tree.insert(1);
+
+    assert(!int_tree.empty());
+    assert(3 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test insert three elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(2);
+    int_tree.insert(1);
+    int_tree.insert(0);
+
+    assert(!int_tree.empty());
+    assert(3 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(3);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(3);
+    int_tree.insert(2);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(1);
+    int_tree.insert(3);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(3);
+    int_tree.insert(1);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(0);
+    int_tree.insert(3);
+    int_tree.insert(1);
+    int_tree.insert(2);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(0);
+    int_tree.insert(3);
+    int_tree.insert(2);
+    int_tree.insert(1);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(1);
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(3);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(1);
+    int_tree.insert(0);
+    int_tree.insert(3);
+    int_tree.insert(2);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(0);
+    int_tree.insert(3);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(3);
+    int_tree.insert(0);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(1);
+    int_tree.insert(3);
+    int_tree.insert(0);
+    int_tree.insert(2);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(1);
+    int_tree.insert(3);
+    int_tree.insert(2);
+    int_tree.insert(0);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(2);
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(3);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(2);
+    int_tree.insert(0);
+    int_tree.insert(3);
+    int_tree.insert(1);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(2);
+    int_tree.insert(1);
+    int_tree.insert(0);
+    int_tree.insert(3);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(2);
+    int_tree.insert(1);
+    int_tree.insert(3);
+    int_tree.insert(0);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(2);
+    int_tree.insert(3);
+    int_tree.insert(0);
+    int_tree.insert(1);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(2);
+    int_tree.insert(3);
+    int_tree.insert(1);
+    int_tree.insert(0);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(3);
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(2);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(3);
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(1);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(3);
+    int_tree.insert(1);
+    int_tree.insert(0);
+    int_tree.insert(2);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(3);
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(0);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(3);
+    int_tree.insert(2);
+    int_tree.insert(0);
+    int_tree.insert(1);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
+
+  { // test insert four elements with unique values
+    BinarySearchTree<int> int_tree;
+
+    int_tree.insert(3);
+    int_tree.insert(2);
+    int_tree.insert(1);
+    int_tree.insert(0);
+
+    assert(!int_tree.empty());
+    assert(4 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+    assert(1 == int_tree.count(3));
+  }
 }
 
 
@@ -397,6 +986,277 @@ void test_erase(void)
     assert(1 == int_tree.count(0));
     assert(0 == int_tree.count(1));
   }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(2);
+
+    int_tree.erase(0);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(0 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(2);
+
+    int_tree.erase(1);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(0 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(2);
+
+    int_tree.erase(2);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(0 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(1);
+
+    int_tree.erase(0);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(0 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(1);
+
+    int_tree.erase(1);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(0 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(1);
+
+    int_tree.erase(2);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(0 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(1);
+    int_tree.insert(0);
+    int_tree.insert(2);
+
+    int_tree.erase(0);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(0 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(1);
+    int_tree.insert(0);
+    int_tree.insert(2);
+
+    int_tree.erase(1);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(0 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(1);
+    int_tree.insert(0);
+    int_tree.insert(2);
+
+    int_tree.erase(2);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(0 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(0);
+
+    int_tree.erase(0);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(0 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(0);
+
+    int_tree.erase(1);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(0 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(0);
+
+    int_tree.erase(2);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(0 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(2);
+    int_tree.insert(0);
+    int_tree.insert(1);
+
+    int_tree.erase(0);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(0 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(2);
+    int_tree.insert(0);
+    int_tree.insert(1);
+
+    int_tree.erase(1);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(0 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(2);
+    int_tree.insert(0);
+    int_tree.insert(1);
+
+    int_tree.erase(2);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(0 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(2);
+    int_tree.insert(1);
+    int_tree.insert(0);
+
+    int_tree.erase(0);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(0 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(2);
+    int_tree.insert(1);
+    int_tree.insert(0);
+
+    int_tree.erase(1);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(0 == int_tree.count(1));
+    assert(1 == int_tree.count(2));
+  }
+
+  { // test three element tree with unique values
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(2);
+    int_tree.insert(1);
+    int_tree.insert(0);
+
+    int_tree.erase(2);
+
+    assert(!int_tree.empty());
+    assert(2 == int_tree.size());
+    assert(1 == int_tree.count(0));
+    assert(1 == int_tree.count(1));
+    assert(0 == int_tree.count(2));
+  }
+
 }
 
 
