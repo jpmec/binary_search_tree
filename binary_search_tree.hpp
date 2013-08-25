@@ -15,16 +15,18 @@
 template <typename T>
 class BinarySearchTree
 {
-public:
+  public:
 
   /// Default constructor.
   BinarySearchTree()
+    : root(NULL)
   {
   }
 
 
   /// Copy constructor.
   BinarySearchTree(const BinarySearchTree& other)
+    : root(NULL)
   {
   }
 
@@ -43,8 +45,15 @@ public:
   }
 
 
+  /// Returns true if the tree is empty.
+  bool empty(void) const
+  {
+    return (NULL == this->root);
+  }
+
+
   /// Clear all the elements.
-  void clear()
+  void clear(void)
   {
   }
 
@@ -84,6 +93,44 @@ public:
   {
     return 0;
   }
+
+
+  protected:
+
+  /// Binary search tree node type.
+  /// Contains left and right pointers, and its value.
+  struct Node
+  {
+    struct Node* left;
+    struct Node* right;
+    T value;
+
+    /// Constructor, must pass value for node.
+    Node(const T& v)
+      : left(NULL), right(NULL), value(v)
+    {
+    }
+
+    /// Constructor, must pass value, left and right pointers.
+    Node(const T& v, Node* l, Node* r)
+      : left(l), right(r), value(v)
+    {
+    }
+
+    protected:
+
+    /// Protected default constructor.
+    /// Do not call.
+    Node()
+      : left(NULL), right(NULL), value(0)
+    {
+    }
+  };
+
+private:
+
+  /// The root node, may be NULL.
+  Node* root;
 
 };
 

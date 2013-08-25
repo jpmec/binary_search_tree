@@ -11,7 +11,9 @@ using namespace std;
 
 void test_default_constructor(void)
 {
-  assert(0);
+  BinarySearchTree<int> int_tree;
+
+  assert(int_tree.empty());
 }
 
 
@@ -36,6 +38,16 @@ void test_destructor(void)
 void test_assignment(void)
 {
   assert(0);
+}
+
+
+
+
+void test_empty(void)
+{
+  BinarySearchTree<int> int_tree;
+
+  assert(int_tree.empty());
 }
 
 
@@ -95,6 +107,7 @@ int main(int argc, char* argv[])
   test_copy_constructor();
   test_destructor();
   test_assignment();
+  test_empty();
   test_clear();
   test_compare();
   test_insert();
