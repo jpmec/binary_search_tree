@@ -42,6 +42,15 @@ class BinarySearchTree
   /// Assignment, copy elements to this from other.
   BinarySearchTree& operator=(const BinarySearchTree& other)
   {
+    this->clear();
+
+    if (other.empty())
+    {
+      return *this;
+    }
+
+    this->root = new Node(other.root->value);
+
     return *this;
   }
 
@@ -54,9 +63,20 @@ class BinarySearchTree
 
 
   /// Clear all the elements.
-  void clear(void)
+  BinarySearchTree& clear(void)
   {
+    if (NULL == this->root)
+    {
+      return *this;
+    }
+
+    this->root->clear();
+    delete(this->root);
+    this->root = NULL;
+
+    return *this;
   }
+
 
   /// Compare this to other tree.
   /// Returns 0 if trees are same size and contain the same values.
@@ -71,6 +91,12 @@ class BinarySearchTree
   /// Insert a value into the tree.
   BinarySearchTree& insert(T value)
   {
+    if (NULL == this->root)
+    {
+      this->root = new Node(value);
+      return *this;
+    }
+
     return *this;
   }
 
@@ -78,6 +104,13 @@ class BinarySearchTree
   /// Erase value from the tree.
   BinarySearchTree& erase(T value)
   {
+    if (this->empty())
+    {
+      return *this;
+    }
+
+    this->root = this->root->erase(value);
+
     return *this;
   }
 
@@ -85,14 +118,24 @@ class BinarySearchTree
   /// Return number of elements in tree.
   size_t size(void) const
   {
-    return 0;
+    if (this->empty())
+    {
+      return 0;
+    }
+
+    return this->root->size();
   }
 
 
   /// Returns number of elements that are equivalent to T.
   size_t count(const T& value) const
   {
-    return 0;
+    if (this->empty())
+    {
+      return 0;
+    }
+
+    return this->root->count(value);
   }
 
 
@@ -116,6 +159,93 @@ class BinarySearchTree
     Node(const T& v, Node* l, Node* r)
       : left(l), right(r), value(v)
     {
+    }
+
+    /// Get the size of the tree contained by this node.
+    size_t size(void) const
+    {
+      size_t count = 1;
+
+      if (NULL != this->left)
+      {
+        count += this->left->size();
+      }
+
+      if (NULL != this->right)
+      {
+        count += this->right->size();
+      }
+
+      return count;
+    }
+
+
+    /// Count the number of nodes with equivalent values contained by this node.
+    size_t count(const T& value) const
+    {
+      size_t count = 0;
+
+      if (this->value == value)
+      {
+        count += 1;
+      }
+
+      if (NULL != this->left)
+      {
+        count += this->left->count(value);
+      }
+
+      if (NULL != this->right)
+      {
+        count += this->right->count(value);
+      }
+
+      return count;
+    }
+
+
+    /// Delete the child elements of this.
+    void clear(void)
+    {
+      if (NULL != this->left)
+      {
+        this->left->clear();
+        delete(this->left);
+        this->left = NULL;
+      }
+
+      if (NULL != this->right)
+      {
+        this->right->clear();
+        delete(this->right);
+        this->right = NULL;
+      }
+    }
+
+    /// Erase the value from the tree contained by this node.
+    /// Returns root node of resulting tree.
+    Node* erase(const T& value)
+    {
+      if (this->value == value)
+      {
+        if (NULL != this->right)
+        {
+          // TODO IMPLEMENT THIS CASE
+        }
+
+        else if (NULL != this->left)
+        {
+          // TODO IMPLEMENT THIS CASE
+        }
+
+        delete (this);
+        return NULL;
+      }
+      else
+      {
+        // TODO IMPLEMENT THIS CASE
+        return this;
+      }
     }
 
     protected:
