@@ -50,6 +50,7 @@ class BinarySearchTree
     }
 
     this->root = new Node(other.root->value);
+    this->root->operator=(*(other.root));
 
     return *this;
   }
@@ -84,12 +85,32 @@ class BinarySearchTree
   /// Retruns > 0 if value encountered in other tree is greater than this tree.
   int compare(const BinarySearchTree& other) const
   {
-    return 0;
+    if (this->empty())
+    {
+      if (other.empty())
+      {
+        return 0;
+      }
+      else
+      {
+        return 1;
+      }
+    }
+
+    else if (other.empty())
+    {
+      return -1;
+    }
+
+    else
+    {
+      return this->root->compare(*(other.root));
+    }
   }
 
 
   /// Insert a value into the tree.
-  BinarySearchTree& insert(T value)
+  BinarySearchTree& insert(const T& value)
   {
     if (NULL == this->root)
     {
@@ -97,12 +118,14 @@ class BinarySearchTree
       return *this;
     }
 
+    this->root = this->root->insert(value);
+
     return *this;
   }
 
 
   /// Erase value from the tree.
-  BinarySearchTree& erase(T value)
+  BinarySearchTree& erase(const T& value)
   {
     if (this->empty())
     {
@@ -128,6 +151,8 @@ class BinarySearchTree
 
 
   /// Returns number of elements that are equivalent to T.
+  /// Note: this binary search tree is not allowed to have duplicate values,
+  /// so count will return either 0 or 1.
   size_t count(const T& value) const
   {
     if (this->empty())
@@ -143,11 +168,13 @@ class BinarySearchTree
 
   /// Binary search tree node type.
   /// Contains left and right pointers, and its value.
+  /// Most methods of this class are implemented as recursive functions.
   struct Node
   {
     struct Node* left;
     struct Node* right;
     T value;
+
 
     /// Constructor, must pass value for node.
     Node(const T& v)
@@ -155,11 +182,13 @@ class BinarySearchTree
     {
     }
 
+
     /// Constructor, must pass value, left and right pointers.
     Node(const T& v, Node* l, Node* r)
       : left(l), right(r), value(v)
     {
     }
+
 
     /// Get the size of the tree contained by this node.
     size_t size(void) const
@@ -222,41 +251,144 @@ class BinarySearchTree
       }
     }
 
-    /// Erase the value from the tree contained by this node.
-    /// Returns root node of resulting tree.
-    Node* erase(const T& value)
+
+    /// Insert value into the tree contained by this node.
+    /// Returns root of resulting tree.
+    Node* insert(const T& value)
     {
-      if (this->value == value)
+      if (value < this->value)
       {
-        if (NULL != this->right)
+        if (NULL == this->left)
+        {
+          this->left = new Node(value);
+          return this;
+        }
+        else
         {
           // TODO IMPLEMENT THIS CASE
+          return this;
         }
-
-        else if (NULL != this->left)
-        {
-          // TODO IMPLEMENT THIS CASE
-        }
-
-        delete (this);
-        return NULL;
       }
+
+      else if (value > this->value)
+      {
+        if (NULL == this->right)
+        {
+          this->right = new Node(value);
+          return this;
+        }
+        else
+        {
+          // TODO IMPLEMENT THIS CASE
+          return this;
+        }
+      }
+
       else
       {
-        // TODO IMPLEMENT THIS CASE
+        // value already exists, nothing to do.
         return this;
       }
     }
 
+
+    /// Erase the value from the tree contained by this node.
+    /// Returns root node of resulting tree.
+    Node* erase(const T& value)
+    {
+      if (value < this->value)
+      {
+        this->left = this->left->erase(value);
+        return this;
+      }
+      else if (value > this->value)
+      {
+        this->right = this->right->erase(value);
+        return this;
+      }
+      else
+      {
+        if ((NULL == this->left) && (NULL != this->right))
+        {
+          Node* new_root = this->right;
+          delete (this);
+          return new_root;
+        }
+
+        else if ((NULL != this->left) && (NULL == this->right))
+        {
+          Node* new_root = this->left;
+          delete (this);
+          return new_root;
+        }
+
+        else if ((NULL != this->left) && (NULL != this->right))
+        {
+          // TODO IMPLEMENT THIS CASE
+          return this;
+        }
+
+        else // child nodes both NULL
+        {
+          delete (this);
+          return NULL;
+        }
+      }
+    }
+
+
+    /// Assignment operator.
+    /// Copy other values into this tree.
+    Node& operator=(const Node& other)
+    {
+      this->clear();
+      this->value = other.value;
+
+      if (NULL != other.left)
+      {
+        this->left = new Node(other.left->value);
+        this->left->operator=(*other.left);
+      }
+
+      if (NULL != other.right)
+      {
+        this->right = new Node(other.right->value);
+        this->right->operator=(*other.right);
+      }
+
+      return *this;
+    }
+
+
+    /// Compare this tree to other tree.
+    int compare(const Node& other)
+    {
+      if (other.value < this->value)
+      {
+        return -1;
+      }
+      else if (other.value > this->value)
+      {
+        return 1;
+      }
+      else
+      {
+        return 0;
+      }
+    }
+
+
     protected:
 
     /// Protected default constructor.
-    /// Do not call.
+    /// Do not call, should not be able to create a node without a given value.
     Node()
       : left(NULL), right(NULL), value(0)
     {
     }
+
   };
+
 
 private:
 
