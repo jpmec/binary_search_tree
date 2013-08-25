@@ -10,6 +10,9 @@
 #define BINARY_SERACH_TREE_HPP
 
 
+#include <algorithm>
+
+
 
 
 template <typename T>
@@ -161,6 +164,19 @@ class BinarySearchTree
     }
 
     return this->root->count(value);
+  }
+
+
+  /// Returns the height of the binary search tree.
+  /// Returns -1 for empty tree (i.e. no root)
+  int height(void) const
+  {
+    if (this->empty())
+    {
+      return -1;
+    }
+
+    return this->root->height();
   }
 
 
@@ -403,6 +419,26 @@ class BinarySearchTree
       {
         return 0;
       }
+    }
+
+
+    /// Return height of node tree.
+    /// Returns 0 if no children.
+    int height(void)
+    {
+      int left_height = 0;
+      if (NULL != this->left)
+      {
+        left_height = 1 + this->left->height();
+      }
+
+      int right_height = 0;
+      if (NULL != this->right)
+      {
+        right_height = 1 + this->right->height();
+      }
+
+      return std::max(left_height, right_height);
     }
 
 

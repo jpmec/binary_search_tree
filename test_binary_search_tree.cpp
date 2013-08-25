@@ -1349,6 +1349,77 @@ void test_count(void)
 
 
 
+void test_height(void)
+{
+  { // test empty tree
+    BinarySearchTree<int> int_tree;
+
+    assert(-1 == int_tree.height());
+  }
+
+  { // test one element tree
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+
+    assert(0 == int_tree.height());
+  }
+
+  { // test two element tree
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(1);
+
+    assert(1 == int_tree.height());
+  }
+
+  { // test two element tree
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(1);
+    int_tree.insert(0);
+
+    assert(1 == int_tree.height());
+  }
+
+  { // test four element tree
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(0);
+    int_tree.insert(1);
+    int_tree.insert(2);
+    int_tree.insert(3);
+
+    assert(2 == int_tree.height());
+  }
+
+
+  { // test full seven element tree
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(3);
+    int_tree.insert(1);
+    int_tree.insert(5);
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(4);
+    int_tree.insert(6);
+
+    assert(2 == int_tree.height());
+  }
+
+  { // test eight element tree
+    BinarySearchTree<int> int_tree;
+    int_tree.insert(3);
+    int_tree.insert(1);
+    int_tree.insert(5);
+    int_tree.insert(0);
+    int_tree.insert(2);
+    int_tree.insert(4);
+    int_tree.insert(6);
+    int_tree.insert(7);
+
+    assert(3 == int_tree.height());
+  }
+}
+
+
 
 int main(int argc, char* argv[])
 {
@@ -1363,6 +1434,7 @@ int main(int argc, char* argv[])
   test_erase();
   test_size();
   test_count();
+  test_height();
 
   cout << __FILE__ << " PASSED"<< endl;
 }
