@@ -12,6 +12,7 @@
 
 #include <algorithm>
 #include <stack>
+#include <queue>
 
 
 
@@ -551,8 +552,7 @@ class BinarySearchTree
 
     bool operator!=(const DepthFirstIterator& other) const
     {
-      return    (this->node != other.node)
-             || (this->nodes != other.nodes);
+      return (this->node != other.node);
     }
 
 
@@ -575,16 +575,134 @@ class BinarySearchTree
   };
 
 
+  /// Return a DepthFirstIterator that has been set to the beginning of the tree.
+  /// The beginning of the tree is the left-most node.
   DepthFirstIterator begin_depthfirst()
   {
     return DepthFirstIterator(this->root);
   }
 
 
+  /// Return a DepthFirstIterator that represents the end of the tree.
   DepthFirstIterator end_depthfirst()
   {
     return DepthFirstIterator(NULL);
   }
+
+
+
+
+  class BreadthFirstIterator
+  {
+    public:
+
+    BreadthFirstIterator(Node* root)
+      : node(NULL), queue_ptr(&queue0), next_queue_ptr(&queue1)
+    {
+      if (NULL == root)
+      {
+        return;
+      }
+
+      node = root;
+
+      if (NULL != node->left)
+      {
+        next_queue_ptr->push(node->left);
+      }
+
+      if (NULL != node->right)
+      {
+        next_queue_ptr->push(node->right);
+      }
+    }
+
+
+    T operator*() const
+    {
+      if (NULL == node)
+      {
+        // TODO THROW EXCEPTION
+        return 0;
+      }
+
+      return node->value;
+    }
+
+
+    BreadthFirstIterator& operator++()
+    {
+      if (NULL == node)
+      {
+        return *this;
+      }
+
+      // if queue is empty, then swap the pointers
+      if (queue_ptr->empty())
+      {
+        std::queue<Node*>* temp_ptr = queue_ptr;
+        queue_ptr = next_queue_ptr;
+        next_queue_ptr = temp_ptr;
+      }
+
+      // if queue is still empty, then we are done
+      if (queue_ptr->empty())
+      {
+        node = NULL;
+        return *this;
+      }
+      else
+      {
+        node = queue_ptr->front();
+        queue_ptr->pop();
+
+        if (NULL != node->left)
+        {
+          next_queue_ptr->push(node->left);
+        }
+
+        if (NULL != node->right)
+        {
+          next_queue_ptr->push(node->right);
+        }
+
+        return *this;
+      }
+    }
+
+    bool operator!=(const BreadthFirstIterator& other) const
+    {
+      return (this->node != other.node);
+    }
+
+
+    protected:
+
+    Node* node;
+
+    std::queue<Node*>* queue_ptr;
+    std::queue<Node*>* next_queue_ptr;
+
+    std::queue<Node*> queue0;
+    std::queue<Node*> queue1;
+  };
+
+
+  /// Return a DepthFirstIterator that has been set to the beginning of the tree.
+  /// The beginning of the tree is the left-most node.
+  BreadthFirstIterator begin_breadthfirst()
+  {
+    return BreadthFirstIterator(this->root);
+  }
+
+
+  /// Return a DepthFirstIterator that represents the end of the tree.
+  BreadthFirstIterator end_breadthfirst()
+  {
+    return BreadthFirstIterator(NULL);
+  }
+
+
 
 
   private:
