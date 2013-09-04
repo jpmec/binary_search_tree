@@ -1421,6 +1421,39 @@ void test_height(void)
 
 
 
+
+void test_begin_depthfirst(void)
+{
+  // setup balanced tree
+  const int values[] = {8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15};
+
+  BinarySearchTree<int> int_tree;
+
+  for (int i = 0; i < 15; ++i)
+  {
+    int_tree.insert(values[i]);
+  }
+
+
+  BinarySearchTree<int>::DepthFirstIterator iter = int_tree.begin_depthfirst();
+  const BinarySearchTree<int>::DepthFirstIterator end = int_tree.end_depthfirst();
+  int expected = 1;
+  for (; iter != end; ++expected, ++iter)
+  {
+    int value = *iter;
+
+    if (expected != value)
+    {
+      cout << "expected: " << expected << " value: " << value << endl;
+    }
+
+    assert(expected == value);
+  }
+}
+
+
+
+
 int main(int argc, char* argv[])
 {
   test_default_constructor();
@@ -1435,6 +1468,8 @@ int main(int argc, char* argv[])
   test_size();
   test_count();
   test_height();
+
+  test_begin_depthfirst();
 
   cout << __FILE__ << " PASSED"<< endl;
 }

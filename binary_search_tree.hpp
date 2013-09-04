@@ -11,6 +11,7 @@
 
 
 #include <algorithm>
+#include <stack>
 
 
 
@@ -491,7 +492,102 @@ class BinarySearchTree
   };
 
 
-private:
+  public:
+
+  class DepthFirstIterator
+  {
+    public:
+
+    DepthFirstIterator(Node* root)
+      : node(NULL)
+    {
+      if (NULL == root)
+      {
+        return;
+      }
+
+      node = root;
+      node = push_left_nodes(node);
+    }
+
+
+    T operator*() const
+    {
+      if (NULL == node)
+      {
+        // TODO THROW EXCEPTION
+        return 0;
+      }
+
+      return node->value;
+    }
+
+
+    DepthFirstIterator& operator++()
+    {
+      if (NULL == node)
+      {
+        return *this;
+      }
+      else if (NULL == node->right)
+      {
+        if (nodes.empty())
+        {
+          node = NULL;
+        }
+        else
+        {
+          node = nodes.top();
+          nodes.pop();
+        }
+      }
+      else
+      {
+        node = push_left_nodes(node->right);
+      }
+
+      return *this;
+    }
+
+    bool operator!=(const DepthFirstIterator& other) const
+    {
+      return    (this->node != other.node)
+             || (this->nodes != other.nodes);
+    }
+
+
+    protected:
+
+    Node* push_left_nodes(Node* node)
+    {
+      while (NULL != node->left)
+      {
+        nodes.push(node);
+        node = node->left;
+      }
+
+      return node;
+    }
+
+
+    Node* node;
+    std::stack<Node*> nodes;
+  };
+
+
+  DepthFirstIterator begin_depthfirst()
+  {
+    return DepthFirstIterator(this->root);
+  }
+
+
+  DepthFirstIterator end_depthfirst()
+  {
+    return DepthFirstIterator(NULL);
+  }
+
+
+  private:
 
   /// The root node, may be NULL.
   Node* root;
