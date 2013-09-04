@@ -597,24 +597,9 @@ class BinarySearchTree
     public:
 
     BreadthFirstIterator(Node* root)
-      : node(NULL), queue_ptr(&queue0), next_queue_ptr(&queue1)
+      : node(NULL)
     {
-      if (NULL == root)
-      {
-        return;
-      }
-
-      node = root;
-
-      if (NULL != node->left)
-      {
-        next_queue_ptr->push(node->left);
-      }
-
-      if (NULL != node->right)
-      {
-        next_queue_ptr->push(node->right);
-      }
+      set_node(root);
     }
 
 
@@ -632,43 +617,19 @@ class BinarySearchTree
 
     BreadthFirstIterator& operator++()
     {
-      if (NULL == node)
+      if (queue.empty())
       {
-        return *this;
-      }
-
-      // if queue is empty, then swap the pointers
-      if (queue_ptr->empty())
-      {
-        std::queue<Node*>* temp_ptr = queue_ptr;
-        queue_ptr = next_queue_ptr;
-        next_queue_ptr = temp_ptr;
-      }
-
-      // if queue is still empty, then we are done
-      if (queue_ptr->empty())
-      {
-        node = NULL;
-        return *this;
+        set_node(NULL);
       }
       else
       {
-        node = queue_ptr->front();
-        queue_ptr->pop();
-
-        if (NULL != node->left)
-        {
-          next_queue_ptr->push(node->left);
-        }
-
-        if (NULL != node->right)
-        {
-          next_queue_ptr->push(node->right);
-        }
-
-        return *this;
+        set_node(queue.front());
+        queue.pop();
       }
+
+      return *this;
     }
+
 
     bool operator!=(const BreadthFirstIterator& other) const
     {
@@ -678,13 +639,30 @@ class BinarySearchTree
 
     protected:
 
+    // set the current node, and push its children to back of queue.
+    void set_node(Node* n)
+    {
+      node = n;
+
+      if (NULL == node)
+      {
+        return;
+      }
+
+      if (NULL != node->left)
+      {
+        queue.push(node->left);
+      }
+
+      if (NULL != node->right)
+      {
+        queue.push(node->right);
+      }
+    }
+
     Node* node;
+    std::queue<Node*> queue;
 
-    std::queue<Node*>* queue_ptr;
-    std::queue<Node*>* next_queue_ptr;
-
-    std::queue<Node*> queue0;
-    std::queue<Node*> queue1;
   };
 
 
